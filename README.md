@@ -8,9 +8,12 @@ We welcome any suggestions or contributions, please don't hesitate to contact us
 
 ## Usage
 1. Run ``python main.py``
-2. Click ``Project -> Open -> BibTex`` to open a ``.bib`` file. You will find that all entries are listed on the left. 
-3. Click ``Add entry`` button, add a new entry by parsing bibtex (e.g., from Google Scholar) in the new dialog, and save.
-4. Right click the entry to edit or remove.
+2. You can select different function as follows:
+- Click ``Project -> Open -> BibTex`` to open a ``.bib`` file. You will find that all entries are listed on the left. 
+- Click ``Add entry`` button, add a new entry by parsing bibtex (e.g., from Google Scholar) in the new dialog, and save.
+- Right click the entry to edit or remove.
+- On the Google Scholar Tab, searching by any keyword. Double click or Right click the results can add to the left side.
+- On the BibTex Tab, open a another ``.bib`` file, and it will list any new entry. Double click or Right click the results can add to the left side.
 5. If you finish editting entries, click ``Export`` button to save to a new ``.bib`` file.  
 6. ``data/Prefix.bib`` contains prefix for the saved ``.bib`` file.
 
