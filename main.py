@@ -30,7 +30,7 @@ class MainWindow(QWidget):
 		self.init_ui()
 
 	def init_ui(self):
-		self.setWindowTitle('Biblist for Windows')
+		self.setWindowTitle('BibCite for Windows')
 		self.resize(1800, 1400)
 
 		# 主水平布局
@@ -304,3 +304,4 @@ if __name__ == '__main__':
 	window = MainWindow()
 	window.show()
 	sys.exit(app.exec_())
+
