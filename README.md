@@ -9,18 +9,16 @@ We welcome any suggestions or contributions, please don't hesitate to contact us
 ## Usage
 1. Run ``python main.py``
 2. You can select different functions as follows:
-- Click ``Project -> Open -> BibTex`` to open a ``.bib`` file. You will find that all entries are listed on the left. 
-- Click ``Add entry`` button, add a new entry by parsing bibtex (e.g., from Google Scholar) in the new dialog, and save.
+- Click ``Project -> New project`` to create an empty project. Or click ``Project -> Template`` to open an existing ``.bib`` file, and you will find that all entries are listed on the left.
+- Click ``New entry`` button. A new dialog will be shown and you need to parses bibtex (e.g., from Google Scholar) and click save.
 - Right click the entry to edit or remove.
-- On the Google Scholar Tab, searching by any keyword. Double click or Right click the results can add to the left side.
-- On the BibTex Tab, open another ``.bib`` file, and it will list any new entry. Double click or Right click the results can add to the left side.
+- In the ``Google Scholar`` Tab, searching by any keyword. Double click or Right click the results can add to the left side.
+- In the ``BibTex`` Tab, open another ``.bib`` file, and it will list any new entry. Double click or Right click the results can add to the left side.
+- In the ``Storage`` Tab, all entries that you have ever used are stored. Double click or Right click the results can add to the left side.
 3. If you finish editting entries, click ``Export`` button to save to a new ``.bib`` file.  
 4. ``data/Prefix.bib`` contains prefix for the saved ``.bib`` file.
 
 ## TODO
-1. Searching bibtex from Google Scholar
--  We can search on Google Scholar now, but may have some bugs.
-2. Adding bibtex from other .bib flie
--  The basic function is OK.
-3. Building a template to create .bib file for new paper
-4. And more
+1. Searching on Google Scholar may need to use another threads.
+2. Searching on storage by keyworks.
+3. And more
