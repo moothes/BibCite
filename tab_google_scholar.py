@@ -23,7 +23,7 @@ class GoogleScholarTab(QWidget):
         input_layout = QHBoxLayout()
         self.input = QLineEdit()
         self.input.setFont(label_font)
-        self.btn = QPushButton('搜索')
+        self.btn = QPushButton('Search')
         self.btn.setFont(label_font)
         input_layout.addWidget(self.input)
         input_layout.addWidget(self.btn)
@@ -39,7 +39,7 @@ class GoogleScholarTab(QWidget):
         layout.addWidget(self.listwidget_entry)
 
         # 信息显示区
-        self.info = QTextEdit('请输入关键词搜索')
+        self.info = QTextEdit('Please select an entry to view details')
         self.info.setReadOnly(True)
         self.info.setFont(label_font)
         self.info.setStyleSheet('border: 1px solid #ccc; padding: 8px;')
@@ -57,7 +57,7 @@ class GoogleScholarTab(QWidget):
         if not item:
             return
         menu = QMenu(self)
-        action_add_to_project = menu.addAction('添加到项目')
+        action_add_to_project = menu.addAction('Add to project')
         #action_edit_entry = menu.addAction('编辑条目')
         action = menu.exec_(self.listwidget_entry.mapToGlobal(pos))
         if action == action_add_to_project:
@@ -66,6 +66,9 @@ class GoogleScholarTab(QWidget):
     def add_to_project(self, entry_id):
         entry = self.search_list.get(entry_id, None)
         if entry:
+            if entry.get('ID', 'Unknown ID') in self.mainpage.project_entry.keys():
+                QMessageBox.warning(self, '提示', f'条目 {entry_id} 已经在项目中！')
+                return
             self.mainpage.project_entry[entry.get('ID', 'Unknown ID')] = entry
             self.mainpage.list_widget.addItem(entry_id)
         else:
@@ -100,4 +103,4 @@ class GoogleScholarTab(QWidget):
             
                 self.info.setText(bibtex_str)
         else:
-            self.info.setText('请选择上方列表项')
+            self.info.setText('Please select an entry')

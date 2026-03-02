@@ -18,7 +18,7 @@ class BibTeXTab(QWidget):
     def init_ui(self):
         layout = QVBoxLayout(self)
 
-        btn_open_bib = QPushButton('打开文件')
+        btn_open_bib = QPushButton('Open BibTeX file')
         btn_open_bib.clicked.connect(self.open_file)
         layout.addWidget(btn_open_bib)
 
@@ -47,7 +47,7 @@ class BibTeXTab(QWidget):
         if not item:
             return
         menu = QMenu(self)
-        action_add_to_project = menu.addAction('添加到项目')
+        action_add_to_project = menu.addAction('Add to project')
         #action_edit_entry = menu.addAction('编辑条目')
         action = menu.exec_(self.listwidget_entry.mapToGlobal(pos))
         if action == action_add_to_project:
@@ -66,6 +66,9 @@ class BibTeXTab(QWidget):
     def add_to_project(self, entry_id):
         entry = self.entry_list.get(entry_id, None)
         if entry:
+            if entry.get('ID', 'Unknown ID') in self.mainpage.project_entry.keys():
+                QMessageBox.warning(self, '提示', f'条目 {entry_id} 已经在项目中！')
+                return
             self.mainpage.project_entry[entry.get('ID', 'Unknown ID')] = entry
             self.mainpage.list_widget.addItem(entry_id)
         else:

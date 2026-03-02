@@ -17,15 +17,14 @@ from tab_bibtex import BibTeXTab
 class MainWindow(QWidget):
 	def __init__(self):
 		super().__init__()
+		self.project_entry = {}
 
-		database_path = 'data/database.json'
-		if os.path.exists(database_path):
-			with open(database_path, 'r') as f:
+		self.database_path = 'data/database.json'
+		if os.path.exists(self.database_path):
+			with open(self.database_path, 'r') as f:
 				self.database = json.load(f)
 		else:
 			self.database = {}
-
-		self.project_entry = {}
 
 		self.init_ui()
 
@@ -57,6 +56,7 @@ class MainWindow(QWidget):
 		menu_bar = QMenuBar(self)
 		project_menu = menu_bar.addMenu('Project')
 
+		'''
 		open_submenu = project_menu.addMenu('Open')
 		create_empty_action = QAction('New Project', self)
 		create_empty_action.triggered.connect(self.create_empty_project)
@@ -68,9 +68,15 @@ class MainWindow(QWidget):
 		open_submenu.addAction(create_empty_action)
 		open_submenu.addAction(from_template_action)
 		open_submenu.addAction(open_bibtex_action)
+		'''
 
-		#open_project_action = QAction('Open', self)
-		#project_menu.addAction(open_project_action)
+		create_empty_action = QAction('New Project', self)
+		create_empty_action.triggered.connect(self.create_empty_project)
+		project_menu.addAction(create_empty_action)
+
+		from_template_action = QAction('Template', self)
+		from_template_action.triggered.connect(self.open_bibtex_file)
+		project_menu.addAction(from_template_action)
 
 		exit_action = QAction('Exit', self)
 		exit_action.triggered.connect(self.close)
@@ -80,12 +86,8 @@ class MainWindow(QWidget):
 
 	def create_empty_project(self):
 		self.project_entry = {}
-		
-
-	def create_from_template(self):
-		#TODO : 预设一些模板条目，供用户选择创建
-		self.project_entry = {}
-		
+		self.list_widget.clear()
+				
 	def open_bibtex_file(self):
 		self.project_entry = {}
 		file_path, _ = QFileDialog.getOpenFileName(self, 'Open BibTeX File', '', 'BibTeX Files (*.bib);;All Files (*)')
@@ -127,7 +129,7 @@ class MainWindow(QWidget):
 		left_layout.addWidget(self.list_widget, 3)
 
 		# 信息显示区
-		self.bibtex_display = QTextEdit('请选择左侧项目')
+		self.bibtex_display = QTextEdit('Please select an entry to view details')
 		self.bibtex_display.setReadOnly(True)
 		font = QFont()
 		font.setPointSize(10)
@@ -178,8 +180,8 @@ class MainWindow(QWidget):
 		layout.addWidget(text_edit)
 
 		btn_layout = QHBoxLayout()
-		btn_save = QPushButton('保存')
-		btn_close = QPushButton('关闭')
+		btn_save = QPushButton('Save')
+		btn_close = QPushButton('Close')
 		btn_layout.addWidget(btn_save)
 		btn_layout.addWidget(btn_close)
 		layout.addLayout(btn_layout)
@@ -298,6 +300,10 @@ class MainWindow(QWidget):
 					db.entries = [entry]
 					writer = BibTexWriter()
 					f.write(writer.write(db))
+    
+		self.database.update(self.project_entry)
+		with open(self.database_path, 'w', encoding='utf-8') as f:
+			json.dump(self.database, f, indent=4)
 
 if __name__ == '__main__':
 	app = QApplication(sys.argv)
