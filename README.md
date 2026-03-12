@@ -31,7 +31,7 @@
 ## 安装依赖
 
 ```bash
-pip install pyqt5 bibtexparser scholarly pytest pytest-qt
+pip install pyqt5 bibtexparser scholarly 
 ```
 
 ## 快速开始
@@ -92,3 +92,4 @@ pytest
 ## License
 
 如需开源发布，建议补充 `LICENSE` 文件并在此处声明许可证类型（例如 MIT）。
+
