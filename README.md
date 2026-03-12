@@ -31,7 +31,7 @@
 ## 安装依赖
 
 ```bash
-pip install pyqt5 bibtexparser scholarly 
+pip install pyqt5 bibtexparser==1.1.0 scholarly==1.7.11 
 ```
 
 ## 快速开始
@@ -46,6 +46,7 @@ python main.py
 2. 双击候选条目加入项目。
 3. 右键项目条目可编辑、添加 alias、删除。
 4. 点击 `Export` 导出 `.bib` 文件。
+
 
 
 
