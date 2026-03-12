@@ -47,49 +47,6 @@ python main.py
 3. 右键项目条目可编辑、添加 alias、删除。
 4. 点击 `Export` 导出 `.bib` 文件。
 
-## Google Scholar 代理（可选）
 
-如果网络环境导致检索失败，可设置代理环境变量后再启动程序：
 
-- `SCHOLAR_HTTP_PROXY`
-- `SCHOLAR_HTTPS_PROXY`
-- 或通用 `HTTP_PROXY` / `HTTPS_PROXY`
-
-程序会在普通检索失败时尝试代理回退策略。
-
-## 数据文件说明
-
-- `data/database.json`：历史数据库（导出时仅追加新条目）
-- `data/Prefix.bib`：导出时写入到文件头的 BibTeX 模板
-- `data/mybibliography.bib` / `data/test.bib`：示例或测试用 BibTeX 文件
-
-## 测试
-
-```bash
-pytest
-```
-
-当前仓库包含 `tests/test_gui_automation.py`，覆盖了 alias 处理、导出行为和异常输入等关键流程。
-
-## 项目结构
-
-```text
-.
-├─ main.py
-├─ base_tab.py
-├─ tab_storage.py
-├─ tab_google_scholar.py
-├─ tab_bibtex.py
-├─ styles.py
-├─ data/
-│  ├─ database.json
-│  ├─ Prefix.bib
-│  └─ *.bib
-└─ tests/
-   └─ test_gui_automation.py
-```
-
-## License
-
-如需开源发布，建议补充 `LICENSE` 文件并在此处声明许可证类型（例如 MIT）。
 
